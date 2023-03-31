@@ -1,6 +1,6 @@
 # pokemon-api-pagination
 
-A simple React app demonstrating pagination with pokeapi
+A simple React app demonstrating pagination with [pokeapi](https://pokeapi.co/docs/v2)
 
 ## Prompt
 
