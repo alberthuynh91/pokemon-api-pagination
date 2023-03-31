@@ -8,7 +8,6 @@ const getPages = (totalNumItems, numItemsPerPage, numPageBtnsPerRow) => {
   let row = [];
   for (var i = 0; i < totalNumRows; i++) {
     const currentNum = i + 1;
-    console.log(`what is currentNum: `, currentNum);
     const currentRow = Math.ceil(currentNum / numPageBtnsPerRow);
     row.push(currentNum);
     if (currentNum % numPageBtnsPerRow === 0 || currentNum === totalNumRows) {
@@ -25,9 +24,7 @@ const PageNumbers = (props) => {
   if (!data.count) return null;
 
   const totalNumPages = Math.ceil(data.count / 20);
-
   const pages = getPages(data.count, 20, 10); // divides total number of pages into rows of 10. ex: [[1,2,3,4,5,6,7,8,9,10], [11,12..]]
-
   const currentPageOfPages = Math.ceil(page / 10);
 
   const handlePrev = () => {
@@ -65,10 +62,10 @@ const PageNumbers = (props) => {
         });
     }
   };
+
   const handlePage = (event) => {
     const pageNumber = event.target.value;
-    const offset = pageNumber * 20;
-
+    const offset = (pageNumber - 1) * 20;
     fetch(
       'https://pokeapi.co/api/v2/pokemon-species/?' +
         new URLSearchParams({
@@ -97,10 +94,10 @@ const PageNumbers = (props) => {
         </button>
       </div>
       <div>
-        {pages[currentPageOfPages].map((page) => {
+        {pages[currentPageOfPages].map((pageNum) => {
           return (
-            <button value={page} onClick={handlePage}>
-              {page}
+            <button value={pageNum} onClick={handlePage}>
+              {pageNum}
             </button>
           );
         })}
