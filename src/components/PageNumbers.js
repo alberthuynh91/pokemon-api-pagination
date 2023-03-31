@@ -1,6 +1,24 @@
 import { sortAlphabeticallyBy } from '../utils';
 import { LIMIT } from '../constants';
 
+// Generate list of fixed-length arrays based on number of page buttons per row
+const getPages = (totalNumItems, numItemsPerPage, numPageBtnsPerRow) => {
+  const totalNumRows = Math.ceil(totalNumItems / numItemsPerPage);
+  const pageRows = {};
+  let row = [];
+  for (var i = 0; i < totalNumRows; i++) {
+    const currentNum = i + 1;
+    console.log(`what is currentNum: `, currentNum);
+    const currentRow = Math.ceil(currentNum / numPageBtnsPerRow);
+    row.push(currentNum);
+    if (currentNum % numPageBtnsPerRow === 0 || currentNum === totalNumRows) {
+      pageRows[currentRow] = row;
+      row = [];
+    }
+  }
+  return pageRows;
+};
+
 const PageNumbers = (props) => {
   const { data, setData, page, setPage } = props;
 
@@ -8,16 +26,9 @@ const PageNumbers = (props) => {
 
   const totalNumPages = Math.ceil(data.count / 20);
 
-  const pages =
-    totalNumPages - page > 9
-      ? Array(totalNumPages)
-          .fill()
-          .map((_, i) => i)
-          .slice(page - 1, page + 9)
-      : Array(totalNumPages)
-          .fill()
-          .map((_, i) => i)
-          .slice(totalNumPages - 10, totalNumPages);
+  const pages = getPages(data.count, 20, 10); // divides total number of pages into rows of 10. ex: [[1,2,3,4,5,6,7,8,9,10], [11,12..]]
+
+  const currentPageOfPages = Math.ceil(page / 10);
 
   const handlePrev = () => {
     if (data.previous) {
@@ -36,7 +47,6 @@ const PageNumbers = (props) => {
 
   const handleNext = () => {
     const totalNumPages = Math.ceil(data.count / 20);
-
     if (data.next && page + 1 <= totalNumPages) {
       fetch(
         'https://pokeapi.co/api/v2/pokemon-species/?' +
@@ -72,19 +82,25 @@ const PageNumbers = (props) => {
           ...data,
           results: sortAlphabeticallyBy(data.results, 'name'),
         });
-        setPage(Number(pageNumber) + 1);
+        setPage(Number(pageNumber));
       });
   };
   return (
     <div className="page-numbers-container">
-      {page > 1 && <button onClick={handlePrev}>Prev</button>}
-      <span>{page}</span>
-      {page < totalNumPages && <button onClick={handleNext}>Next</button>}
+      <div className="prev-next-wrapper">
+        <button disabled={page === 1} onClick={handlePrev}>
+          Prev
+        </button>
+        <span>{page}</span>
+        <button disabled={page === totalNumPages} onClick={handleNext}>
+          Next
+        </button>
+      </div>
       <div>
-        {pages.map((page) => {
+        {pages[currentPageOfPages].map((page) => {
           return (
             <button value={page} onClick={handlePage}>
-              {page + 1}
+              {page}
             </button>
           );
         })}

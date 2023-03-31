@@ -1,5 +1,9 @@
-.App {
+.app {
   font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .pokemon-container {
@@ -12,4 +16,15 @@
   padding: 1em;
   border: 1px solid black;
   text-align: center;
+}
+
+.page-numbers-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev-next-wrapper {
+
 }
