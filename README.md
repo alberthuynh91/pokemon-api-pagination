@@ -2,6 +2,30 @@
 
 A simple React app demonstrating pagination with pokeapi
 
+## Prompt
+
+```
+/**
+ * APIs and Pokémons
+ * =================
+ *
+ * Using the PokéAPI, write a program to obtain the names of Pokémon
+ * species known to the API. Use pagination when obtaining
+ * the species names - Add buttons to view the next/previous set of
+ * results. ~ FOR IC4 ~ Under the next/previous buttons, also add buttons for all
+ * possible pages that populate with results when you click the page.
+ * Present the names in alphabetical order.
+ *
+ *
+ * Note: this is a public API for which no API key/token is needed.
+ *
+ * You may refer to the PokéAPI docs here:
+ * https://pokeapi.co/docs/v2
+ * Hint: You will want to use the
+ * https://pokeapi.co/api/v2/pokemon-species/ endpoint.
+ * **/
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
