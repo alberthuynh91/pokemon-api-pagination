@@ -1,0 +1,15 @@
+.App {
+  font-family: monospace;
+}
+
+.pokemon-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 1em;
+}
+
+.pokemon-wrapper {
+  padding: 1em;
+  border: 1px solid black;
+  text-align: center;
+}
