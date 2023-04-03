@@ -1,5 +1,5 @@
 const Pokemon = (props) => {
-  const { name, url } = props;
+  const { name } = props;
   return <div className="pokemon-wrapper">{name}</div>;
 };
 

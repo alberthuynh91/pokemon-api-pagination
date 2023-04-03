@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Pokemon from './components/Pokemon';
 import PageNumbers from './components/PageNumbers';
 import { sortAlphabeticallyBy } from './utils';
-import { LIMIT } from './constants';
 import './App.css';
 
 function App() {
