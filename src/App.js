@@ -18,7 +18,7 @@ function App() {
         setLoading(false);
         setData({
           ...data,
-          results: sortAlphabeticallyBy(data.results, 'name'),
+          results: sortAlphabeticallyBy('name', data.results),
         });
       });
   }, []);

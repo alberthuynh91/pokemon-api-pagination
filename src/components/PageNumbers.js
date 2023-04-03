@@ -34,8 +34,7 @@ const PageNumbers = (props) => {
         .then((data) => {
           setData({
             ...data,
-            // Note: Sorting the results of every API call is not very efficient. We should cache this computation or ask the API for the sorted data through request params.
-            results: sortAlphabeticallyBy(data.results, 'name'),
+            results: sortAlphabeticallyBy('name', data.results),
           });
           setPage((pageNum) => pageNum - 1);
         });
@@ -56,7 +55,7 @@ const PageNumbers = (props) => {
         .then((data) => {
           setData({
             ...data,
-            results: sortAlphabeticallyBy(data.results, 'name'),
+            results: sortAlphabeticallyBy('name', data.results),
           });
           setPage((pageNum) => pageNum + 1);
         });
@@ -77,7 +76,7 @@ const PageNumbers = (props) => {
       .then((data) => {
         setData({
           ...data,
-          results: sortAlphabeticallyBy(data.results, 'name'),
+          results: sortAlphabeticallyBy('name', data.results),
         });
         setPage(Number(pageNumber));
       });
@@ -96,7 +95,7 @@ const PageNumbers = (props) => {
       <div>
         {pages[currentPageOfPages].map((pageNum) => {
           return (
-            <button value={pageNum} onClick={handlePage}>
+            <button key={pageNum} value={pageNum} onClick={handlePage}>
               {pageNum}
             </button>
           );
