@@ -1,6 +1,6 @@
 # pokemon-api-pagination
 
-A simple React app demonstrating pagination with [pokeapi](https://pokeapi.co/docs/v2)
+A simple React app demonstrating pagination with [pokeapi](https://pokeapi.co/docs/v2). You can view the deployed app [here](https://pokemon-api-pagination.netlify.app/)
 
 ## Prompt
 
